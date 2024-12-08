@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sprockets
 {
-    internal class OrderOutbox
+    public class OrderOutbox
     {
-
         [JsonProperty(PropertyName = "id")]
         public string? Id { get; set; }
 

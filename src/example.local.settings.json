@@ -1,0 +1,13 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "CosmosDBEndpoint": "https://{account-name}.documents.azure.com:443/",
+        "CosmosDBDatabaseId": "{cosmosdb-database-name}",
+        "CosmosDBContainerId": "{cosmosdb-container-name}",
+        "CosmosDBConnection__accountEndpoint": "https://{account-name}.documents.azure.com:443/",
+        "ServiceBusNamespace": "https://{namespace-name}.servicebus.windows.net/orders",
+        "ServiceBusTopicName": "{service-bus-topic-name}"
+    }
+}
