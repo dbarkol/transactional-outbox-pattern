@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Azure.Cosmos;
 
-namespace src
+namespace Sprockets
 {
     public class OrderMaker
     {
