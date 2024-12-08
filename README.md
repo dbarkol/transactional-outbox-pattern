@@ -12,12 +12,12 @@ The overall flow can be broken down into these steps:
 
 1. Incoming orders are sent from a client application to an HTTP-triggered Azure Function.
 
-2. The Azure Function will save both the order details as well as any events that should be published to Cosmos DB using a single transaction.
+2. The Azure Function will save both the order details as well as any events that should be published to a message broker to Cosmos DB using a single transaction.
 
 3. Another Azure Function, the outbox processor, is invoked from the Cosmos DB change feed when the transaction completes.
 
 4. Events waiting to be published are retrieved from Cosmos DB.
 
-5. If there are any pending events, the function will attempt to publish them to a message broker. Azure Service Bus is used in this example to showcase an important feature called duplicate detection, more on that later.
+5. If there are any pending events, the function will attempt to publish them to a Service Bus topic.
 
-6. Finally, once published, the function will update the corresponding entries in Cosmos to a “Processed” state.
+6. After publishing to a message borker, the function will update the corresponding entries in Cosmos to a “Processed” state.
