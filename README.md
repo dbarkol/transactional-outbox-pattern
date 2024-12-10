@@ -1,6 +1,6 @@
 # Transactional Outbox Pattern with Azure Functions
 
-This repository provides a sample implementation of the Transactional Outbox Pattern using Azure Functions and Azure Cosmos DB. The pattern ensures reliable, event-driven communication between services by atomically persisting domain changes and associated events in a single transaction. 
+This repository provides a sample implementation of the Transactional Outbox Pattern using [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview?pivots) and [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction). The pattern ensures reliable, event-driven communication between services by atomically persisting domain changes and associated events in a single transaction. 
 
 This implementation leverages Cosmos DB's transactional capabilities for event storage and Azure Functions to asynchronously process and publish the events, enabling seamless integration across distributed systems. The sample is designed to be modular and scalable, serving as a foundation for building resilient and consistent microservices.
 
@@ -18,6 +18,6 @@ The overall flow can be broken down into these steps:
 
 4. Events waiting to be published are retrieved from Cosmos DB.
 
-5. If there are any pending events, the function will attempt to publish them to a Service Bus topic.
+5. If there are any pending events, the function will attempt to publish them to a [Service Bus topic](https://learn.microsoft.com/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 6. After publishing to a message borker, the function will update the corresponding entries in Cosmos to a “Processed” state.
