@@ -25,6 +25,7 @@ var host = new HostBuilder()
         CosmosClient cosmosClient = new CosmosClient(cosmosDbEndpoint, new DefaultAzureCredential(), options);
         services.AddSingleton(cosmosClient);
 
+        // Add a ServiceBusClient to the services collection
         var serviceBusNamespace = Environment.GetEnvironmentVariable("ServiceBusNamespace");
         var serviceBusClient = new ServiceBusClient(serviceBusNamespace, new DefaultAzureCredential());
         services.AddSingleton(serviceBusClient);
