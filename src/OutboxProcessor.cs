@@ -33,6 +33,7 @@ namespace Sprockets
         }
 
         [Function("OutboxProcessor")]
+        [FixedDelayRetry(5, "00:00:10")]
         public async Task Run(
             [CosmosDBTrigger(
                 databaseName: "%CosmosDBDatabaseId%",
