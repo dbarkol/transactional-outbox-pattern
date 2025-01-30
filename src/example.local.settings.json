@@ -7,6 +7,7 @@
         "CosmosDBDatabaseId": "{cosmosdb-database-name}",
         "CosmosDBContainerId": "{cosmosdb-container-name}",
         "CosmosDBConnection__accountEndpoint": "https://{account-name}.documents.azure.com:443/",
+        "LeaseContainerName": "{cosmosdb-lease-container-name}",
         "ServiceBusNamespace": "https://{namespace-name}.servicebus.windows.net/orders",
         "ServiceBusTopicName": "{service-bus-topic-name}"
     }

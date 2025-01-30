@@ -32,6 +32,16 @@ namespace Sprockets
             _container = _cosmosClient.GetContainer(databaseId, containerId);            
         }
 
+        /// <summary>
+        /// This function is triggered by changes to the Cosmos DB container.
+        /// 
+        /// The function processes the outbox orders and sends the order to 
+        /// the Service Bus topic.
+        /// 
+        /// A delayed retry policy is applied to the function to ensure that
+        /// the function is retried in case of a failure. The retry policy
+        /// also allows ensures that change feed events are not lost.
+        /// </summary>
         [Function("OutboxProcessor")]
         [FixedDelayRetry(5, "00:00:10")]
         public async Task Run(
@@ -40,7 +50,7 @@ namespace Sprockets
                 containerName: "%CosmosDBContainerId%",
                 Connection = "CosmosDBConnection",
                 CreateLeaseContainerIfNotExists = true,
-                LeaseContainerName ="sprocketleases")] IReadOnlyList<JsonElement> input)
+                LeaseContainerName ="%LeaseContainerName%")] IReadOnlyList<JsonElement> input)
         {
             if (input != null && input.Count > 0)
             {
@@ -72,7 +82,7 @@ namespace Sprockets
                             message.ApplicationProperties.Add("MessageType", "OrderCreated");
 
                             // Set the MessageID to the order ID 
-                            // so that the message can be deduplicated if necessary
+                            // for deduplication purposes
                             message.MessageId = order.Resource.OrderId;
                             
                             // Send the message to the Service Bus topic
